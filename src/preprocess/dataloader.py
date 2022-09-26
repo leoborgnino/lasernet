@@ -13,37 +13,11 @@ class RangeImageLoader:
 
         dataset = WaymoDataset(DATA_PATH, 'train', True, "new_waymo")
 
-        for j in range(50):
-            frame, idx = dataset.data, dataset.count
-            print(frame)
-            exit()
-            #calib = dataset.get_calib(frame, idx)
-            ri =  dataset.get_lidar(frame, idx)
-            #print(ri.shape)
-            # Create figure and axes
-            fig, ax = plt.subplots()
-
-            # Display the image
-            ax.imshow(ri[:,:,0], aspect='auto')
-
-            #plt.imshow()
-            #plt.show()
-            target = dataset.get_label(frame, idx)
-            #print(target)
-            #print(i.box2d)
-
-            # Create a Rectangle patch
-            for i in target:
-                print(i.box2d)
-                print(i.cls_type)
-                if(i.cls_type=='VEHICLE'):
-                    ax.add_patch(patches.Rectangle((i.box2d[0], i.box2d[1]), i.box2d[2]-i.box2d[0], i.box2d[3]-i.box2d[1], linewidth=2.0, edgecolor='r', facecolor='r'))
-                #if(i.cls_type=='SIGN'):
-                #    ax.add_patch(patches.Rectangle((i.box2d[0], i.box2d[1]), i.box2d[2]-i.box2d[0], i.box2d[3]-i.box2d[1], linewidth=0.8, edgecolor='g', facecolor='none'))
-            #plt.show()
-            plt.savefig('%d'%j)
-            plt.close()
-
+        frame, idx = dataset.data, dataset.count
+        ri =  dataset.get_lidar(frame, idx)
+        fig, ax = plt.subplots()        
+        target = dataset.get_label(frame, idx)
+        
 
 sampling_rate = 1
 

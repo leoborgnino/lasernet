@@ -117,7 +117,8 @@ class WaymoDataset(Dataset):
             self._frame_counter+=1
         self._num_frames+=1
         self._idx_to_frame.append((self._file_counter, self._frame_counter))
-        return next(self._dataset_itr) # Send next frame from record 
+        frame = next(self._dataset_itr)
+        return  self.get_lidar(frame, idx)# Send next frame from record 
     
     def count_frames(self):
         # Count total frames 
